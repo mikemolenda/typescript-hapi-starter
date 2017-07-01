@@ -1,8 +1,8 @@
 import * as Hapi from 'hapi';
 import * as Boom from 'boom';
-import * as uuid from 'uuid';
+import Database from "../../database";
 
-import User from '../../model/user';
+import {User} from '../../model/user';
 import Utils from '../../helper/utils';
 import Logger from '../../helper/logger';
 import Repository from '../../repository';
@@ -14,14 +14,16 @@ class UserController {
         try {
             Logger.info(`POST - ${Utils.getUrl(request)}`);
 
+            const connection = await Database.init();
+            const userRepository = connection.getRepository(User);
+
             const user = new User();
 
-            user.id = uuid();
             user.age = request.payload.age;
             user.name = request.payload.name;
             user.lastName = request.payload.last_name;
 
-            this.repository.save(user.id, user);
+            await userRepository.create(user);
 
             return response({
                 statusCode: 200,
@@ -65,7 +67,11 @@ class UserController {
             Logger.info(`GET - ${Utils.getUrl(request)}`);
 
             const id = encodeURIComponent(request.params.id);
-            const user = this.repository.getById(id);
+
+            const connection = await Database.init();
+            const userRepository = connection.getRepository(User);
+
+            const user = await userRepository.findOneById(id);
 
             if (!user) {
                 return response(Boom.notFound('User not found'));

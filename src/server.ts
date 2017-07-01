@@ -1,3 +1,4 @@
+import 'reflect-metadata';
 import * as Hapi from 'hapi';
 
 import Logger from './helper/logger';
@@ -8,9 +9,6 @@ class Server {
     public static async init(): Promise<any> {
         try {
             const server = new Hapi.Server();
-
-            Logger.info('HOST -> ' + process.env.HOST);
-            Logger.info('PORT -> ' + process.env.PORT);
 
             server.connection({
                 host: process.env.HOST,

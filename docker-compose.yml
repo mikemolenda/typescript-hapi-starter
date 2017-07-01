@@ -1,5 +1,12 @@
 version: '3'
 services:
+  db:
+    container_name: web-api-db
+    image: postgres:9.6.3-alpine
+    environment:
+      - POSTGRES_PASSWORD=test
+      - POSTGRES_USER=test
+      - POSTGRES_DB=test
   web:
     container_name: web-api
     build: .
@@ -12,5 +19,12 @@ services:
       - PROJECT_DIR=/usr/app/
       - NODE_ENV=development
       - LOG_LEVEL=debug
+      - POSTGRES_PASSWORD=test
+      - POSTGRES_USER=test
+      - POSTGRES_DB=test
+      - POSTGRES_HOST=0.0.0.0
+      - POSTGRES_PORT=5432
     ports:
       - "localhost:8080:8080"
+    links:
+      - db
