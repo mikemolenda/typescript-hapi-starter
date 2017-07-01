@@ -1,8 +1,8 @@
 import * as Hapi from 'hapi';
 import * as Boom from 'boom';
-import Database from "../../database";
+import Database from '../../database';
 
-import {User} from '../../model/user';
+import { User } from '../../model/user';
 import Utils from '../../helper/utils';
 import Logger from '../../helper/logger';
 import Repository from '../../repository';

@@ -1,4 +1,4 @@
-import {Connection, createConnection} from "typeorm";
+import { Connection, createConnection } from 'typeorm';
 
 import Logger from './helper/logger';
 
@@ -16,9 +16,7 @@ export default class Database {
                     password: process.env.POSTGRES_PASSWORD,
                     database: process.env.POSTGRES_DB,
                 },
-                entities: [
-                    __dirname + "/model/*.ts",
-                ],
+                entities: [__dirname + '/model/*.ts'],
                 autoSchemaSync: true,
             });
         } catch (error) {
