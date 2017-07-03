@@ -10,7 +10,8 @@
   "scripts": {
     "docker:logs": "docker-compose logs",
     "docker:ps": "docker-compose ps",
-    "docker:start": "docker-compose up",
+    "docker:build": "docker-compose build --no-cache=true",
+    "docker:start": "docker:build && docker-compose up --force-recreate",
     "docker:stop": "docker-compose -f docker-compose.yml down -v --remove-orphans",
     "nodemon:build": "nodemon --exec 'node -r dotenv/config' ./node_modules/.bin/ts-node -- ./src/server.ts",
     "nodemon:start": "npm run nodemon:build",
