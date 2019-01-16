@@ -1,4 +1,4 @@
-import * as DataStore from 'nedb';
+import * as DataStore from "nedb";
 
 export default class Repository<T> {
     public dataSource = new DataStore({

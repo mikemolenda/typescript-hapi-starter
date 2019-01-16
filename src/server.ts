@@ -1,9 +1,9 @@
-import * as Hapi from 'hapi';
-import * as DotEnv from 'dotenv';
+import * as Hapi from "hapi";
+import * as DotEnv from "dotenv";
 
-import Logger from './helper/logger';
-import Plugin from './plugin';
-import Router from './router';
+import Logger from "./helper/logger";
+import Plugin from "./plugin";
+import Router from "./router";
 
 export default class Server {
     private static _instance: Hapi.Server;
@@ -15,8 +15,8 @@ export default class Server {
             });
 
             Server._instance = new Hapi.Server({
-                host: process.env.HOST,
-                port: process.env.PORT,
+                host: Config.host,
+                port: Config.port,
             });
 
             await Plugin.registerAll(Server._instance);
@@ -24,7 +24,7 @@ export default class Server {
 
             await Server._instance.start();
 
-            Logger.info('Server - Up and running!');
+            Logger.info("Server - Up and running!");
             Logger.info(`Visit: http://${process.env.HOST}:${process.env.PORT}/api/users for REST API`);
             Logger.info(`Visit: http://${process.env.HOST}:${process.env.PORT}/documentation for Swagger docs`);
 

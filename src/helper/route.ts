@@ -1,4 +1,4 @@
-import * as Hapi from 'hapi';
+import * as Hapi from "hapi";
 
 interface IRoute {
     register(server: Hapi.Server): Promise<any>;

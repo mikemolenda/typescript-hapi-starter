@@ -1,9 +1,9 @@
-import * as Hapi from 'hapi';
-import * as Boom from 'boom';
+import * as Hapi from "hapi";
+import * as Boom from "boom";
 
-import Utils from '../helper/utils';
-import Logger from '../helper/logger';
-import CrudResolver from '../common/base-resolver';
+import Utils from "../helper/utils";
+import Logger from "../helper/logger";
+import CrudResolver from "../common/base-resolver";
 
 export default class CrudController<T> {
     constructor(private crudResolver: CrudResolver<T>) {}
@@ -17,7 +17,7 @@ export default class CrudController<T> {
             return h.response({
                 statusCode: 200,
                 data: {
-                    id: data['_id'],
+                    id: data["_id"],
                 },
             });
         } catch (error) {

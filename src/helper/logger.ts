@@ -1,5 +1,5 @@
-import * as Winston from 'winston';
-import * as Dotenv from 'dotenv';
+import * as Winston from "winston";
+import * as Dotenv from "dotenv";
 
 Dotenv.config();
 
@@ -13,9 +13,9 @@ export class ApiLogger {
                 Winston.format.printf(info => {
                     const { timestamp, level, message, ...args } = info;
 
-                    const ts = timestamp.slice(0, 19).replace('T', ' ');
+                    const ts = timestamp.slice(0, 19).replace("T", " ");
                     return `${ts} [${level}]: ${message} ${
-                        Object.keys(args).length ? JSON.stringify(args, null, 2) : ''
+                        Object.keys(args).length ? JSON.stringify(args, null, 2) : ""
                     }`;
                 }),
             ),
