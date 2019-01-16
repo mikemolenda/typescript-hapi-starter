@@ -6,20 +6,20 @@ import Logger from "../helper/logger";
 export default class Plugins {
     public static async status(server: Hapi.Server): Promise<Error | any> {
         try {
-            Logger.info("Plugins - Registering status-monitor");
+            Logger.info("Plugins: Registering status-monitor");
 
             await Plugins.register(server, {
                 options: Config.status.options,
                 plugin: require("hapijs-status-monitor"),
             });
         } catch (error) {
-            Logger.info(`Plugins - Ups, something went wrong when registering status plugin: ${error}`);
+            Logger.info(`Plugins: Ups, something went wrong when registering status plugin: ${error}`);
         }
     }
 
     public static async swagger(server: Hapi.Server): Promise<Error | any> {
         try {
-            Logger.info("Plugins - Registering swagger-ui");
+            Logger.info("Plugins: Registering swagger-ui");
 
             await Plugins.register(server, [
                 require("vision"),
@@ -30,19 +30,19 @@ export default class Plugins {
                 },
             ]);
         } catch (error) {
-            Logger.info(`Plugins - Ups, something went wrong when registering swagger-ui plugin: ${error}`);
+            Logger.info(`Plugins: Ups, something went wrong when registering swagger-ui plugin: ${error}`);
         }
     }
 
     public static async boom(server: Hapi.Server): Promise<Error | any> {
         try {
-            Logger.info("Plugins - Registering hapi-boom-decorators");
+            Logger.info("Plugins: Registering hapi-boom-decorators");
 
             await Plugins.register(server, {
                 plugin: require("hapi-boom-decorators"),
             });
         } catch (error) {
-            Logger.info(`Plugins - Ups, something went wrong when registering hapi-boom-decorators plugin: ${error}`);
+            Logger.info(`Plugins: Ups, something went wrong when registering hapi-boom-decorators plugin: ${error}`);
         }
     }
 

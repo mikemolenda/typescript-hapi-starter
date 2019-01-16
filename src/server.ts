@@ -21,13 +21,13 @@ export default class Server {
 
             await Server._instance.start();
 
-            Logger.info("Server - Up and running!");
+            Logger.info("Server: Up and running!");
             Logger.info(`Visit: http://${Config.host}:${Config.port}/api/users for REST API`);
             Logger.info(`Visit: http://${Config.host}:${Config.port}/documentation for Swagger docs`);
 
             return Server._instance;
         } catch (error) {
-            Logger.info(`Server - There was something wrong: ${error}`);
+            Logger.info(`Server: There was something wrong: ${error}`);
 
             throw error;
         }
