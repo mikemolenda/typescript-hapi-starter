@@ -1,3 +1,10 @@
+import * as DotEnv from "dotenv";
+
+// Import and config dotenv before server is required
+DotEnv.config({
+    path: `${process.cwd()}/.env`,
+});
+
 import Logger from "./helper/logger";
 import Server from "./server";
 

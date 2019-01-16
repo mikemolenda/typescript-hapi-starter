@@ -1,19 +1,16 @@
 import * as Hapi from "hapi";
-import * as DotEnv from "dotenv";
 
 import Logger from "./helper/logger";
 import Plugin from "./plugin";
 import Router from "./router";
+
+import Config from "./config";
 
 export default class Server {
     private static _instance: Hapi.Server;
 
     public static async start(): Promise<Hapi.Server> {
         try {
-            DotEnv.config({
-                path: `${process.cwd()}/.env`,
-            });
-
             Server._instance = new Hapi.Server({
                 host: Config.host,
                 port: Config.port,
@@ -25,8 +22,8 @@ export default class Server {
             await Server._instance.start();
 
             Logger.info("Server - Up and running!");
-            Logger.info(`Visit: http://${process.env.HOST}:${process.env.PORT}/api/users for REST API`);
-            Logger.info(`Visit: http://${process.env.HOST}:${process.env.PORT}/documentation for Swagger docs`);
+            Logger.info(`Visit: http://${Config.host}:${Config.port}/api/users for REST API`);
+            Logger.info(`Visit: http://${Config.host}:${Config.port}/documentation for Swagger docs`);
 
             return Server._instance;
         } catch (error) {

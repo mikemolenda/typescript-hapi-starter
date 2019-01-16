@@ -1,7 +1,6 @@
 import * as Winston from "winston";
-import * as Dotenv from "dotenv";
 
-Dotenv.config();
+import Config from "../config";
 
 export class ApiLogger {
     public static newInstance(): Winston.Logger {
@@ -19,7 +18,7 @@ export class ApiLogger {
                     }`;
                 }),
             ),
-            level: process.env.LOG_LEVEL,
+            level: Config.logLevel,
         });
 
         return Winston.createLogger({
